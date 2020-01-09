@@ -17,8 +17,15 @@ class App extends Component {
   createInputArray = (input) => {
 
     let separators = [',', '\n'];
+
     let inputArr = input.split(new RegExp('[' + separators.join('') + ']', 'g'));
 
+    separators.push(inputArr[0].charAt(2));
+
+    let newInput = input.substr(4);
+
+    inputArr = newInput.split(new RegExp('[' + separators.join('') + ']', 'g'));
+    
     return inputArr;
 
   }
@@ -73,8 +80,6 @@ class App extends Component {
       error: error,
       errorMessage: this.negativeNumMessage(negativeNumArr)
     });
-
-    console.log(this.state);
   }
 
 
