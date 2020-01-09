@@ -24,6 +24,20 @@ class App extends Component {
   }
 
 
+  negativeNumMessage = (negativeArr) => {
+
+    let negativeNumString = "Do not use negative numbers such as "
+
+    negativeArr.forEach((num) =>{
+
+      const numString = num.toString();
+      negativeNumString = negativeNumString + ", " + numString;
+    });
+
+    return (negativeNumString);
+  }
+
+
   inputChangedHandler = (event) => {
     this.setState({
       input: event.target.value
@@ -36,18 +50,25 @@ class App extends Component {
     const inputArr = this.createInputArray(this.state.input); 
     let answer = 0; 
     let error = false;
+    let negativeNumArr = []
 
     inputArr.forEach((i) =>{
       const value = Number(i);
 
       if (!isNaN(value)){
-        answer += value;
+        if (value > 0){
+          answer += value;
+        }else{
+          error = true;
+          negativeNumArr.push(value);
+        }
       }
     });
 
     this.setState({
       output: answer,
-      error: error
+      error: error,
+      errorMessage: this.negativeNumMessage(negativeNumArr)
     });
 
     console.log(this.state);
