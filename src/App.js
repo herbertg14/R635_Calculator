@@ -19,31 +19,34 @@ class App extends Component {
     });
   }
 
+  createInputArray = (input) => {
+
+    let inputArr = input.split(',');
+
+    return inputArr;
+
+  }
   
   calculateHandler = () => {
 
-    const inputArr = this.state.input.split(","); 
+    const inputArr = this.createInputArray(this.state.input); 
+    console.log(inputArr);
     let answer = 0; 
     let error = false;
 
-    if (inputArr.length > 2){
-      error = true;
-    } else{
+    inputArr.forEach((i) =>{
+      const value = Number(i);
 
-      inputArr.forEach((i) =>{
-        const value = Number(i);
-
-        if (!isNaN(value)){
-          answer += value;
-        }
-      });
-    }
+      if (!isNaN(value)){
+        answer += value;
+      }
+    });
 
     this.setState({
       output: answer,
       error: error
     });
-    
+
     console.log(this.state);
   }
 
