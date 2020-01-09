@@ -9,7 +9,18 @@ class App extends Component {
   state = {
     input: "",
     output: 0,
-    error: false
+    error: false,
+    errorMessage: ""
+  }
+
+
+  createInputArray = (input) => {
+
+    let separators = [',', '\n'];
+    let inputArr = input.split(new RegExp('[' + separators.join('') + ']', 'g'));
+
+    return inputArr;
+
   }
 
 
@@ -19,18 +30,10 @@ class App extends Component {
     });
   }
 
-  createInputArray = (input) => {
 
-    let inputArr = input.split(',');
-
-    return inputArr;
-
-  }
-  
   calculateHandler = () => {
 
     const inputArr = this.createInputArray(this.state.input); 
-    console.log(inputArr);
     let answer = 0; 
     let error = false;
 
@@ -57,7 +60,7 @@ class App extends Component {
       <div className="App">
         <h1>R365 Calculator</h1>
         <CalculatorInput changed={this.inputChangedHandler} clicked={this.calculateHandler}/>
-        <CalculatorOutput output={this.state.output} error={this.state.error}/>
+        <CalculatorOutput output={this.state.output} error={this.state.error} errorMessage={this.state.errorMessage}/>
       </div>
 
     );

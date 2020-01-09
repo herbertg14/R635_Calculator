@@ -16,10 +16,10 @@
   color: red;
 }
 
-input{
+#inputTxt{
   width: 50%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: -31px 5px;
   box-sizing: border-box;
 }
 

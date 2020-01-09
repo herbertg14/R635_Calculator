@@ -7,7 +7,7 @@ const calculatorOutput = (props) => {
 
         props.error ? 
         <div className="Error">
-            Error! More than 2 values provided!
+            Error: {props.errorMessage}
         </div>: 
 
         <div className="Output">

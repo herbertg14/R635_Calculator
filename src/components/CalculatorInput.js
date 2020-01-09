@@ -3,7 +3,7 @@ import React from 'react';
 const calculatorInput = (props) => {
     return (
         <div className="userInput">
-            <input type="text" onChange={props.changed} /> 
+            <textarea name="inputText" id="inputTxt" onChange={props.changed}></textarea>
             <button onClick={props.clicked}>Calculate</button>
         </div>
     );
