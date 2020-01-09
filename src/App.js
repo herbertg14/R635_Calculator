@@ -31,7 +31,7 @@ class App extends Component {
     negativeArr.forEach((num) =>{
 
       const numString = num.toString();
-      negativeNumString = negativeNumString + ", " + numString;
+      negativeNumString = negativeNumString + numString + " ";
     });
 
     return (negativeNumString);
@@ -56,9 +56,12 @@ class App extends Component {
       const value = Number(i);
 
       if (!isNaN(value)){
-        if (value > 0){
-          answer += value;
-        }else{
+        if (value >= 0){
+          if (value <= 1000){
+            answer += value;
+          }
+        }
+        else{
           error = true;
           negativeNumArr.push(value);
         }
