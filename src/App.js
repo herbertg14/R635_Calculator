@@ -14,20 +14,49 @@ class App extends Component {
   }
 
 
+  parseSeparatorHelper = (separator) =>{
+
+    let separatorArr = [];
+
+    if (separator.length === 3){
+
+      separatorArr.push(separator.charAt(2));
+      return separatorArr;
+    }else{
+
+      let newSeparator = separator.substring(3, separator.length - 1);
+      separatorArr.push(newSeparator);
+      return separatorArr;
+    }
+  }
+
   createInputArray = (input) => {
 
     let separators = [',', '\n'];
 
-    let inputArr = input.split(new RegExp('[' + separators.join('') + ']', 'g'));
+    let inputArr = input.split('\n');
+    // let inputArr = input.split(new RegExp('[' + separators.join('') + ']', 'g'));
 
-    separators.push(inputArr[0].charAt(2));
 
-    let newInput = input.substr(4);
+    // check for delimeter //[something] format
+    if ((inputArr[0].length > 2) && (inputArr[0].substring(0,2) === "//")){
 
-    inputArr = newInput.split(new RegExp('[' + separators.join('') + ']', 'g'));
-    
-    return inputArr;
+      const newSeparator = this.parseSeparatorHelper(inputArr[0]);
+      const mergedSeparators = [...separators, ...newSeparator];
 
+      let newInput = inputArr.slice(1);
+      newInput = newInput.toString();
+      inputArr = newInput.split(new RegExp('[' + mergedSeparators.join('') + ']', 'g'));
+
+      return inputArr;
+
+    }
+    // if there is no delimeter
+    else{
+      inputArr = input.split(new RegExp('[' + separators.join('') + ']', 'g'));
+      return inputArr;
+      
+    }
   }
 
 
