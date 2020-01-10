@@ -22,6 +22,12 @@ class App extends Component {
     });
   }
 
+  example = (() =>{
+    this.setState({
+      error: true
+    });
+  });
+
   //Does calculation based on user input
   calculateHandler = () => {
 
@@ -54,7 +60,6 @@ class App extends Component {
       errorMessage: negativeNumberError(negativeNumArr)
     });
   }
-
 
   render() {
     return (
