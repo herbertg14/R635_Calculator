@@ -1,5 +1,6 @@
 import React from 'react'; 
 
+//User Input
 const calculatorInput = (props) => {
     return (
         <div className="userInput">

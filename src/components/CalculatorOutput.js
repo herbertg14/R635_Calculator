@@ -1,6 +1,6 @@
 import React from 'react'; 
 
-
+//Outputs answer
 const calculatorOutput = (props) => {
 
     return (
